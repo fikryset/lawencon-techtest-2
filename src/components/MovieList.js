@@ -15,7 +15,7 @@ const MovieList = (props) => {
 
   const getMovies = async (search, page) => {
     await axios
-      .get(`http://www.omdbapi.com/?apikey=715289b&s=${search}&{page=${page}`)
+      .get(`http://www.omdbapi.com/?apikey=715289b&s=${search}&page=${page}`)
       .then(function (response) {
         // handle success
         // console.log(response);
@@ -44,7 +44,6 @@ const MovieList = (props) => {
   const addPage = () => {
     var currentPage = pageNo;
     setPageNo((currentPage += 1));
-    console.log(pageNo);
   };
 
   useEffect(() => {
@@ -53,6 +52,7 @@ const MovieList = (props) => {
 
   useEffect(() => {
     getMovies(search, pageNo);
+    window.scrollTo(0, 0);
   }, [search, pageNo]);
 
   return (
